@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/src/pages/tab1_page.dart';
+import 'package:newsapp/src/services/news_services.dart';
 import 'package:provider/provider.dart';
 
 class TabsPage extends StatelessWidget {
@@ -18,6 +20,7 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navegacionModel = Provider.of<_NavegaconModel>(context);
+    final newsService = Provider.of<NewsService>(context);
     return BottomNavigationBar(
       currentIndex: navegacionModel.paginaActual,
       onTap: (i) => navegacionModel.paginaActual = i,
@@ -38,12 +41,7 @@ class _Paginas extends StatelessWidget {
       controller: navegacionModel.pageController,
       //Este physics impide que al deslizarse mueva la pantallla
       physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[
-        Container(
-          color: Colors.red,
-        ),
-        Container(color: Colors.green)
-      ],
+      children: <Widget>[Tab1Page(), Container(color: Colors.green)],
     );
   }
 }
